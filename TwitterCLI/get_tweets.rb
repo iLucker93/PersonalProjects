@@ -21,7 +21,7 @@ case input
 	when "Search"
 		puts "What are you searching for? Will display 10 most recent tweets."
 		search = gets.chomp
-		client.search("#{search}", :result_type => "recent").take(10).collect do |tweet|
+		@client.search("#{search}", :result_type => "recent").take(10).collect do |tweet|
 		puts "#{tweet.user.screen_name}: #{tweet.text}"
 	end
 end
