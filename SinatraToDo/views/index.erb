@@ -1,9 +1,21 @@
 <h1>The ToDo List:</h1>
 <ul>
     <% @todos.each do |todo| %>
+    	<% if todo.completed == true %>
+    	<li class="complete">
+    		<%= todo.id %>. <%= todo.content %>
+    	</li>
+    	<% else %>
     <li>
-        (id: <%= todo.id %>) <%= todo.content %>
+        <%= todo.id %>. <%= todo.content %>
     </li>
+    <% unless todo.completed %>
+            <form action="/delete-todo" method="post" class="done">
+                <input type="hidden" name="todo[id]" value="<%= todo.id %>"/>
+                <input type="submit" value="done!" class="done" />
+            </form>
+        <% end %>
     <% end %>
+<% end %>
 </ul>
 <a href="/todos/new">New ToDo</a>

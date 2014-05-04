@@ -2,7 +2,7 @@
 require_relative 'boot'
 
 get '/todos' do
-	@todos = ToDo.all
+	@todos = ToDo.order('completed')
 	erb :index, layout: :bootstrap
 end
 
@@ -13,5 +13,12 @@ end
 
 post '/todos' do
 	@post = ToDo.create(params[:todo])
+	redirect '/todos'
+end
+
+post '/delete-todo' do
+	@the_todo = ToDo.find(params[:todo][:id])
+	@the_todo.completed = true
+	@the_todo.save
 	redirect '/todos'
 end

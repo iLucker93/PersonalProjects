@@ -17,3 +17,11 @@
   #footer p {
       padding-top:20px;
   }
+
+  li.complete {
+      text-decoration: line-through;
+  }
+
+  input.done {
+      display: inline;
+  }
